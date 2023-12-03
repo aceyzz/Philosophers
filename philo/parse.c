@@ -6,7 +6,7 @@
 /*   By: cedmulle <cedmulle@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 10:06:53 by cedmulle          #+#    #+#             */
-/*   Updated: 2023/12/02 12:32:13 by cedmulle         ###   ########.fr       */
+/*   Updated: 2023/12/03 11:56:17 by cedmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,46 +29,47 @@ static const char	*valid_input(const char *str)
 
 	len = 0;
 	while (is_space(*str))
-		str++;
+		++str;
 	if (*str == '+')
-		str++;
+		++str;
 	else if (*str == '-')
-		error_exit("Negatives values detected.");
+		error_exit("Feed me only positive values");
 	if (!is_digit(*str))
-		error_exit("Non digit character detected.");
+		error_exit("The input is not a correct digit");
 	number = str;
 	while (is_digit(*str++))
-		len++;
+		++len;
 	if (len > 10)
-		error_exit("The value is too big.");
+		error_exit("The value is too big, INT_MAX is the limit");
 	return (number);
 }
 
 static long	ft_atol(const char *str)
 {
-	long	result;
+	long	num;
 
-	result = 0;
+	num = 0;
 	str = valid_input(str);
 	while (is_digit(*str))
-		result = (result * 10) + (*str++ - '0');
-	if (result > INT_MAX)
-		error_exit("The value is too big (INT_MAX).");
-	return (result);
+		num = (num * 10) + (*str++ - '0');
+	if (num > INT_MAX)
+		error_exit("INT_MAX is the limit, not the sky");
+	return (num);
 }
 
-void	parse_input(t_table *table, char *argv[])
+void	parse_input(t_table *table, char **av)
 {
-	table->philo_nbr = ft_atol(argv[1]) * 1e3;
-	table->time_to_die = ft_atol(argv[2]) * 1e3;
-	table->time_to_eat = ft_atol(argv[3]) * 1e3;
-	table->time_to_sleep = ft_atol(argv[4]) * 1e3;
-	if (table->time_to_die < 6e4
-		|| table->time_to_eat < 6e4
-		|| table->time_to_sleep < 6e4)
-		error_exit("Timestamps should be greater than 60ms.");
-	if (argv[5])
-		table->nbr_limit_meals = ft_atol(argv[5]);
+	table->philo_nbr = ft_atol(av[1]);
+	if (table->philo_nbr > PHILO_MAX)
+		exit(EXIT_FAILURE);
+	table->time_to_die = ft_atol(av[2]) * 1e3;
+	table->time_to_eat = ft_atol(av[3]) * 1e3;
+	table->time_to_sleep = ft_atol(av[4]) * 1e3;
+	if (table->time_to_die < 6e4 || table->time_to_sleep < 6e4
+		|| table->time_to_eat < 6e4)
+		error_exit("Use timestamps major than 60ms");
+	if (av[5])
+		table->nbr_limit_meals = ft_atol(av[5]);
 	else
 		table->nbr_limit_meals = -1;
 }
