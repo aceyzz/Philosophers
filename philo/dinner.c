@@ -6,7 +6,7 @@
 /*   By: cedmulle <cedmulle@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 11:43:01 by cedmulle          #+#    #+#             */
-/*   Updated: 2023/12/03 11:57:12 by cedmulle         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:33:41 by cedmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	thinking(t_philo *philo, bool pre_simulation)
 	precise_usleep(t_think * 0.42, philo->table);
 }
 
-void	*lone_philo(void *arg)
+static void	*lone_philo(void *arg)
 {
 	t_philo	*philo;
 
@@ -38,8 +38,8 @@ void	*lone_philo(void *arg)
 	wait_all_threads(philo->table);
 	set_long(&philo->philo_mutex, &philo->last_meal_time, gettime(MILLISECOND));
 	increase_long(&philo->table->table_mutex,
-		&philo->table->threads_running_nbr);
-	write_status(TAKE_FIRST_FORK, philo);
+		&philo->table->nbr_threads_running);
+	write_status(TAKE_FORK1, philo);
 	while (!simulation_finished(philo->table))
 		precise_usleep(200, philo->table);
 	return (NULL);
@@ -48,15 +48,15 @@ void	*lone_philo(void *arg)
 static void	eat(t_philo *philo)
 {
 	safe_mutex(&philo->first_fork->fork, LOCK);
-	write_status(TAKE_FIRST_FORK, philo);
+	write_status(TAKE_FORK1, philo);
 	safe_mutex(&philo->second_fork->fork, LOCK);
-	write_status(TAKE_SECOND_FORK, philo);
+	write_status(TAKE_FORK2, philo);
 	set_long(&philo->philo_mutex, &philo->last_meal_time, gettime(MILLISECOND));
-	philo->meals_counter++;
+	philo->meal_count++;
 	write_status(EATING, philo);
 	precise_usleep(philo->table->time_to_eat, philo->table);
 	if (philo->table->nbr_limit_meals > 0
-		&& philo->meals_counter == philo->table->nbr_limit_meals)
+		&& philo->meal_count == philo->table->nbr_limit_meals)
 		set_bool(&philo->philo_mutex, &philo->full, true);
 	safe_mutex(&philo->first_fork->fork, UNLOCK);
 	safe_mutex(&philo->second_fork->fork, UNLOCK);
@@ -70,7 +70,7 @@ static void	*dinner_simulation(void *data)
 	wait_all_threads(philo->table);
 	set_long(&philo->philo_mutex, &philo->last_meal_time, gettime(MILLISECOND));
 	increase_long(&philo->table->table_mutex,
-		&philo->table->threads_running_nbr);
+		&philo->table->nbr_threads_running);
 	desync_philos(philo);
 	while (!simulation_finished(philo->table))
 	{

@@ -6,7 +6,7 @@
 /*   By: cedmulle <cedmulle@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 09:55:31 by cedmulle          #+#    #+#             */
-/*   Updated: 2023/12/03 11:55:58 by cedmulle         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:12:55 by cedmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long	gettime(int time_code)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
-		error_exit("Gettimeofday failed");
+		error_exit("Gettimeofday failed.");
 	if (MILLISECOND == time_code)
 		return (tv.tv_sec * 1e3 + tv.tv_usec / 1e3);
 	else if (MICROSECOND == time_code)
@@ -25,8 +25,7 @@ long	gettime(int time_code)
 	else if (SECONDS == time_code)
 		return (tv.tv_sec + tv.tv_usec / 1e6);
 	else
-		error_exit("Wrong input to gettime:"
-			"use <MILLISECOND> <MICROSECOND> <SECONDS>");
+		error_exit("Wrong input on get_time. Check usage.");
 	return (1);
 }
 
@@ -56,11 +55,12 @@ void	clean(t_table *table)
 	t_philo	*philo;
 	int		i;
 
-	i = -1;
-	while (++i < table->philo_nbr)
+	i = 0;
+	while (i < table->philo_nbr)
 	{
 		philo = table->philos + i;
 		safe_mutex(&philo->philo_mutex, DESTROY);
+		i++;
 	}
 	safe_mutex(&table->write_mutex, DESTROY);
 	safe_mutex(&table->table_mutex, DESTROY);
@@ -70,6 +70,7 @@ void	clean(t_table *table)
 
 void	error_exit(const char *error)
 {
-	printf(RED "🚨 %s 🚨\n" RST, error);
+	printf(R "Error:\n" RST);
+	printf("%s\n", error);
 	exit(EXIT_FAILURE);
 }

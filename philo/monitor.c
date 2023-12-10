@@ -6,7 +6,7 @@
 /*   By: cedmulle <cedmulle@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 10:01:32 by cedmulle          #+#    #+#             */
-/*   Updated: 2023/12/03 11:56:28 by cedmulle         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:31:46 by cedmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*dinner_monitor(void *data)
 
 	table = (t_table *)data;
 	while (!all_threads_running(&table->table_mutex,
-			&table->threads_running_nbr, table->philo_nbr))
+			&table->nbr_threads_running, table->philo_nbr))
 		;
 	while (!simulation_finished(table))
 	{
