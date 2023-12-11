@@ -45,7 +45,7 @@ Les ressources sont libérées et les mutex sont détruits à la fin de la simul
 Inspiré par [The Dining Philosophers](https://www.youtube.com/watch?v=zOpzGHwJ3MU&t=5326s) by [Oceano](https://www.youtube.com/@onaecO) (Github : [suspectedoceano](https://github.com/suspectedoceano)) <br>
 [Medium article](https://medium.com/@jalal92/the-dining-philosophers-7157cc05315) by [Oceano](https://github.com/suspectedoceano) <br>
 [Notion community site](https://suspectedoceano.notion.site/suspectedoceano/Ocean-s-42-fd42e3ed0f6049ca98fb3b290b84d4d0) by [Oceano](https://github.com/suspectedoceano) <br>
-[codequoi](https://www.codequoi.com/threads-mutex-et-programmation-concurrente-en-c/) by [mcombeau](https://github.com/mcombeau) <br>
+[codequoi](https://www.codequoi.com/threads-mutex-et-programmation-concurrente-en-c/) by [mcombeau](https://github.com/mcombeau) (Incroyable ressource, et en Francais !) <br>
 [Philosophers, 42 School Project](https://www.youtube.com/watch?v=UGQsvVKwe90&t=0s) by [Jamshidbek Ergashev](https://www.youtube.com/@jamshidbekergashev6746) (Github : [Jamshidbek2000](https://github.com/Jamshidbek2000)) <br>
 [Philosophers project](https://youtu.be/PCS55Uk1ooc?si=LC--2BQPA-AMZZPu) by [Youssef Oussama](https://www.youtube.com/@youssefoussama7650) <br>
 
