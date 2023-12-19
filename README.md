@@ -1,5 +1,5 @@
-
-<img src="git_utils/logo.png" alt="logo" style="width: 100%">
+<img src="git_utils/philo_banner.png" alt="logo" style="width: 100%">
+<img src="git_utils/philo_logo.png" alt="logo" style="width: 100%">
 
 <br>
 
@@ -49,3 +49,7 @@ Inspiré par [The Dining Philosophers](https://www.youtube.com/watch?v=zOpzGHwJ3
 [Philosophers, 42 School Project](https://www.youtube.com/watch?v=UGQsvVKwe90&t=0s) by [Jamshidbek Ergashev](https://www.youtube.com/@jamshidbekergashev6746) (Github : [Jamshidbek2000](https://github.com/Jamshidbek2000)) <br>
 [Philosophers project](https://youtu.be/PCS55Uk1ooc?si=LC--2BQPA-AMZZPu) by [Youssef Oussama](https://www.youtube.com/@youssefoussama7650) <br>
 
+
+## Résultat
+
+<img src="git_utils/grade.png" alt="grade" style="width: 25%">
