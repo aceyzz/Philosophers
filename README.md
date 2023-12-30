@@ -56,4 +56,4 @@ Inspiré par [The Dining Philosophers](https://www.youtube.com/watch?v=zOpzGHwJ3
 
 
 ## Licence
-[Licence](./LICENSE)
+This work is published under the terms of **[42 Unlicense](./LICENSE)**.
