@@ -53,3 +53,7 @@ Inspiré par [The Dining Philosophers](https://www.youtube.com/watch?v=zOpzGHwJ3
 ## Résultat
 
 <img src="git_utils/grade.png" alt="grade" style="width: 25%">
+
+
+## Licence
+[Licence](./LICENSE)
